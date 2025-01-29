@@ -26,7 +26,7 @@ class MemberRepositoryImplTest {
         Long savedId = memberRepository.save(member);
 
         // when
-        Member foundMember = memberRepository.find(savedId);
+        Member foundMember = memberRepository.findOne(savedId);
 
         // then
         assertThat(foundMember.getId()).isEqualTo(member.getId());
