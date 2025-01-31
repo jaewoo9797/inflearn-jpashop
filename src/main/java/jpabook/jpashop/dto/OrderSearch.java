@@ -1,9 +1,12 @@
 package jpabook.jpashop.dto;
 
 import jpabook.jpashop.order.entity.enums.OrderStatus;
-
-public record OrderSearch(
-        String memberName,
-        OrderStatus orderStatus
-) {
+import lombok.Getter;
+import lombok.Setter;
+@Getter
+@Setter
+public class OrderSearch {
+    String memberName;
+    int orderCount;
+    OrderStatus orderStatus;
 }

@@ -27,7 +27,7 @@ public class OrderRepository {
         String jpql = "select o from Order o join o.member m";
         boolean isFirstCondition = true;
 
-        if (orderSearch.orderStatus() != null) {
+        if (orderSearch.getOrderStatus() != null) {
             if (isFirstCondition) {
                 jpql += " where";
                 isFirstCondition = false;
@@ -37,7 +37,7 @@ public class OrderRepository {
             jpql += " o.status = :status";
         }
 
-        if (StringUtils.hasText(orderSearch.memberName())) {
+        if (StringUtils.hasText(orderSearch.getMemberName())) {
             if (isFirstCondition) {
                 jpql += " where";
                 isFirstCondition = false;
@@ -50,11 +50,11 @@ public class OrderRepository {
         TypedQuery<Order> query = em.createQuery(jpql, Order.class)
                 .setMaxResults(1_000);
 
-        if (orderSearch.orderStatus() != null) {
-            query.setParameter("status", orderSearch.orderStatus());
+        if (orderSearch.getOrderStatus() != null) {
+            query.setParameter("status", orderSearch.getOrderStatus());
         }
-        if (orderSearch.memberName() != null) {
-            query.setParameter("name", orderSearch.memberName());
+        if (orderSearch.getMemberName() != null) {
+            query.setParameter("name", orderSearch.getMemberName());
         }
         return query.getResultList();
     }
